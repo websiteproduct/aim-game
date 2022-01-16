@@ -111,7 +111,7 @@ function resetGame() {
 }
 
 function getHighScore() {
-    if (typeof JSON.parse(localStorage.highScore) === number) {
+    if (typeof JSON.parse(localStorage.highScore) === 'number') {
         localStorage.removeItem('highScore')
     }
 
