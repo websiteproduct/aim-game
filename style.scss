@@ -9,7 +9,6 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     font-family: 'Roboto', sans-serif;
     background-color: #111;
 }
@@ -22,6 +21,7 @@ body {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .screen {
@@ -42,11 +42,14 @@ body {
 }
 
 button {
-    padding: 5px 10px;
+    padding: 8px 10px;
     text-transform: uppercase;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 2px;
+    border: 0;
 }
 
 .button-group {
