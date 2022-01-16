@@ -6,6 +6,7 @@ const board = document.getElementById('board')
 const colors = ['#007f5f', '#2b9348', '#55a630', '#80b918', '#aacc00', '#bfd200', '#70d6ff','#ff70a6','#ff9770','#ffd670','#e9ff70', '#d4d700', '#dddf00', '#eeef20', '#ffff3f']
 let time = 0
 let score = 0
+let highScore = 0
 let interval
 
 startBtn.addEventListener('click', () => {
@@ -79,17 +80,30 @@ function getRandomColor() {
 }
 
 function finishGame() {
+    clearInterval(interval)
+    highScore = getHighScore()
+    if (score > highScore) {
+        setHighScore(score)
+        highScore = getHighScore()
+    }
     timer.parentNode.classList.add('hide')
-    board.innerHTML = `<h2>Score: ${score}<h2><button type="button" id="try-again-btn">Try again</button>`
+    board.innerHTML = `<h2>High score: ${highScore}<h2><h2>Score: ${score}<h2><button type="button" id="try-again-btn">Try again</button>`
     const tryAgainBtn = board.querySelector('#try-again-btn')
     tryAgainBtn.addEventListener('click', resetGame) 
 }
 
 function resetGame() {
-    clearInterval(interval)
     board.innerHTML = ''
     timer.parentNode.classList.remove('hide')
     time = 0
     score = 0
     screens[1].classList.remove('up')
+}
+
+function getHighScore() {
+    return highScore = +localStorage.getItem('highScore')
+}
+
+function setHighScore(value) {
+    localStorage.setItem('highScore', value)
 }
