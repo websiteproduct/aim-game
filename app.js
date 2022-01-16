@@ -88,7 +88,6 @@ function finishGame() {
     if (score > getHighScore()) {
         setHighScore(chosenTime, score)
         highScore = getHighScore()
-        console.log(getHighScore())
         const notificationColor = getRandomColor()
         notification = ` <span class="notification" style="box-shadow: 0 0 2px ${notificationColor}, 0 0 5px ${notificationColor}">new</span>`
     }
@@ -111,11 +110,15 @@ function resetGame() {
 }
 
 function getHighScore() {
-    if (typeof JSON.parse(localStorage.highScore) === 'number') {
+    let highScore = 0
+
+    if (typeof JSON.parse(localStorage.getItem('highScore')) === 'number') {
         localStorage.removeItem('highScore')
+    } else if (localStorage.getItem('highScore')) {
+        highScore = JSON.parse(localStorage.getItem('highScore'))[chosenTime] || 0
     }
 
-    return JSON.parse(localStorage.getItem('highScore'))[chosenTime] || 0
+    return highScore
 }
 
 function setHighScore(time, value) {
@@ -129,5 +132,4 @@ function setHighScore(time, value) {
         currentResult[time] = value
         localStorage.setItem('highScore', JSON.stringify(currentResult))
     }
-    console.log(currentResult)
 }
