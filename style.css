@@ -32,6 +32,8 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   overflow: hidden;
+  -ms-touch-action: pan-x;
+      touch-action: pan-x;
 }
 
 .screen {

@@ -22,6 +22,7 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     overflow: hidden;
+    touch-action: pan-x;
 }
 
 .screen {
